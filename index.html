@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coming Soon | The Prime Solution</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:      #1A9DC9;   /* vivid sky blue — page background */
+      --dark:    #0C6D8E;   /* deep blue — banners, boxes, pills  */
+      --darker:  #095872;   /* hover / footer depth              */
+      --mid:     #5BBBD8;   /* medium blue — separators, labels  */
+      --accent:  #A8D8F0;   /* pale blue — ribbon ends, top bars */
+      --white:   #FFFFFF;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--white);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* subtle noise texture overlay */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .wrapper {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── HEADER ─────────────────────────────────── */
+    header {
+      background: var(--white);
+      border-bottom: 5px solid var(--dark);
+      padding: 18px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      animation: fadeIn .5s ease both;
+    }
+
+    .logo-img {
+      height: 72px;
+      width: auto;
+      display: block;
+      object-fit: contain;
+    }
+
+    .header-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 4px;
+    }
+
+    .header-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--darker);
+      color: var(--white);
+      border-radius: 4px;
+      padding: 6px 14px;
+      font-family: 'Oswald', sans-serif;
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .live-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--white);
+      animation: blink 1.4s ease-in-out infinite;
+    }
+
+    @keyframes blink {
+      0%,100% { opacity: 1; }
+      50%      { opacity: 0.3; }
+    }
+
+    .header-location {
+      font-size: .7rem;
+      color: #999;
+      font-weight: 500;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    /* ── MAIN ───────────────────────────────────── */
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 72px 24px 80px;
+      gap: 52px;
+    }
+
+    /* ── COMING SOON BADGE ──────────────────────── */
+    .badge-block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      animation: zoomIn .65s cubic-bezier(.22,1,.36,1) both;
+    }
+
+    /* dash lines top */
+    .dash-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 14px;
+      opacity: .45;
+    }
+    .dash { height: 2px; background: rgba(255,255,255,.5); border-radius: 2px; }
+
+    /* main dark angled banner — matches reference image */
+    .coming-banner {
+      position: relative;
+      background: var(--dark);
+      padding: 24px 64px 24px 56px;
+      clip-path: polygon(4% 0%, 100% 0%, 96% 100%, 0% 100%);
+      overflow: hidden;
+    }
+
+    /* diagonal stripe texture */
+    .coming-banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        -52deg,
+        transparent,
+        transparent 12px,
+        rgba(255,255,255,.05) 12px,
+        rgba(255,255,255,.05) 24px
+      );
+    }
+
+    /* thin accent top border on banner */
+    .coming-banner::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--accent);
+    }
+
+    .coming-text {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(2.6rem, 9vw, 5rem);
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: .05em;
+      font-style: italic;
+      position: relative;
+      z-index: 1;
+      text-shadow: 3px 3px 0 rgba(0,0,0,.4);
+      line-height: 1;
+    }
+
+    /* white ribbon below banner */
+    .under-ribbon {
+      background: var(--white);
+      padding: 11px 52px;
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(.8rem, 2.8vw, 1.05rem);
+      font-weight: 600;
+      letter-spacing: .35em;
+      color: var(--dark);
+      text-transform: uppercase;
+      position: relative;
+    }
+
+    /* angled left + right ends of ribbon */
+    .under-ribbon::before,
+    .under-ribbon::after {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 18px;
+      background: var(--yellow);
+    }
+    .under-ribbon::before { left: 0;  clip-path: polygon(0 0, 100% 0, 60% 100%, 0 100%); background: var(--bg); }
+    .under-ribbon::after  { right: 0; clip-path: polygon(40% 0, 100% 0, 100% 100%, 0 100%); background: var(--bg); }
+
+    /* dash lines bottom */
+    .dash-row-bottom { margin-top: 14px; margin-bottom: 0; }
+
+    /* ── SUBHEADLINE ────────────────────────────── */
+    .subheadline {
+      font-size: clamp(.98rem, 2.5vw, 1.15rem);
+      color: rgba(255,255,255,.92);
+      line-height: 1.75;
+      max-width: 540px;
+      margin: 0 auto;
+      animation: fadeInUp .7s ease .2s both;
+    }
+
+    /* ── COUNTDOWN ──────────────────────────────── */
+    .countdown-wrap { animation: fadeInUp .7s ease .28s both; }
+
+    .cd-label-top {
+      font-family: 'Oswald', sans-serif;
+      font-size: .78rem;
+      font-weight: 600;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.65);
+      margin-bottom: 20px;
+      opacity: 1;
+    }
+
+    .countdown {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .cd-unit { display: flex; flex-direction: column; align-items: center; gap: 9px; }
+
+    .cd-box {
+      background: var(--dark);
+      border-radius: 8px;
+      width: 90px; height: 90px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 4px 4px 0 rgba(0,0,0,.18);
+      transition: transform .2s;
+    }
+    .cd-box:hover { transform: translateY(-3px); }
+
+    /* accent top bar */
+    .cd-box::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: var(--accent);
+    }
+
+    /* horizontal divider line */
+    .cd-box::after {
+      content: '';
+      position: absolute;
+      left: 14%; right: 14%;
+      top: 50%;
+      height: 1px;
+      background: rgba(255,255,255,.07);
+    }
+
+    .cd-num {
+      font-family: 'Oswald', sans-serif;
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -.02em;
+      line-height: 1;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cd-lbl {
+      font-size: .63rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.7);
+    }
+
+    .cd-sep {
+      font-family: 'Oswald', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: rgba(255,255,255,.5);
+      margin-top: 16px;
+      line-height: 1;
+      opacity: .6;
+    }
+
+    @keyframes numFlip {
+      0%   { transform: translateY(0);    opacity: 1; }
+      40%  { transform: translateY(-8px); opacity: 0; }
+      60%  { transform: translateY(8px);  opacity: 0; }
+      100% { transform: translateY(0);    opacity: 1; }
+    }
+    .flipping { animation: numFlip .38s ease; }
+
+    /* ── EMAIL CTA ──────────────────────────────── */
+    .cta-wrap {
+      width: 100%;
+      max-width: 500px;
+      animation: fadeInUp .7s ease .34s both;
+    }
+
+    .cta-card {
+      background: var(--white);
+      border-radius: 10px;
+      padding: 28px 28px 24px;
+      box-shadow: 6px 6px 0 rgba(0,0,0,.18);
+      text-align: left;
+    }
+
+    .cta-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--darker);
+      letter-spacing: .04em;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+    }
+
+    .cta-sub {
+      font-size: .85rem;
+      color: #777;
+      margin-bottom: 18px;
+    }
+
+    .email-row {
+      display: flex;
+      border: 2px solid var(--darker);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .email-row input {
+      flex: 1;
+      border: none;
+      outline: none;
+      padding: 13px 16px;
+      font-size: .92rem;
+      font-family: inherit;
+      color: var(--dark);
+      background: #f9f9f9;
+      min-width: 0;
+    }
+    .email-row input::placeholder { color: #aaa; }
+
+    .btn-notify {
+      background: var(--darker);
+      color: var(--white);
+      border: none;
+      padding: 13px 22px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background .2s;
+    }
+    .btn-notify:hover { background: #073D50; }
+
+    .success-msg {
+      display: none;
+      margin-top: 12px;
+      font-size: .88rem;
+      font-weight: 600;
+      color: var(--darker);
+      animation: fadeInUp .4s ease;
+    }
+
+    /* ── CONTACT ────────────────────────────────── */
+    .contact-wrap { animation: fadeInUp .7s ease .4s both; }
+
+    .contact-lbl {
+      font-family: 'Oswald', sans-serif;
+      font-size: .78rem;
+      font-weight: 500;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.7);
+      opacity: 1;
+      margin-bottom: 14px;
+    }
+
+    .pills {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--darker);
+      color: var(--white);
+      border-radius: 6px;
+      padding: 13px 22px;
+      text-decoration: none;
+      font-size: .9rem;
+      font-weight: 700;
+      letter-spacing: .01em;
+      box-shadow: 3px 3px 0 rgba(0,0,0,.2);
+      transition: background .2s, transform .2s, box-shadow .2s;
+    }
+    .pill:hover {
+      background: #073D50;
+      transform: translateY(-2px);
+      box-shadow: 3px 5px 0 rgba(0,0,0,.2);
+    }
+
+    /* ── FOOTER ─────────────────────────────────── */
+    footer {
+      background: var(--dark);
+      padding: 24px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      border-top: 4px solid var(--accent);
+      animation: fadeIn 1s ease .5s both;
+    }
+
+    .footer-left { display: flex; flex-direction: column; gap: 3px; }
+    .copyright   { font-size: .78rem; color: rgba(255,255,255,.4); }
+    .footer-loc  { font-size: .7rem; color: rgba(255,255,255,.25); font-weight: 500; letter-spacing: .04em; }
+
+    .socials { display: flex; gap: 8px; }
+
+    .soc-btn {
+      width: 36px; height: 36px;
+      border-radius: 6px;
+      border: 1.5px solid rgba(255,255,255,.15);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,.4);
+      text-decoration: none;
+      transition: all .22s ease;
+    }
+    .soc-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    /* ── KEYFRAMES ──────────────────────────────── */
+    @keyframes zoomIn {
+      from { opacity: 0; transform: scale(.88); }
+      to   { opacity: 1; transform: scale(1);   }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0);    }
+    }
+
+    /* ── RESPONSIVE ─────────────────────────────── */
+    @media (max-width: 640px) {
+      header      { padding: 14px 18px; flex-direction: column; gap: 12px; align-items: flex-start; }
+      .header-right { align-items: flex-start; }
+      .logo-img   { height: 52px; }
+      main        { padding: 52px 18px 64px; gap: 40px; }
+      .coming-banner { padding: 18px 46px 18px 40px; }
+      .cd-box     { width: 72px; height: 72px; }
+      .cd-num     { font-size: 1.9rem; }
+      .countdown  { gap: 8px; }
+      .cd-sep     { font-size: 1.6rem; margin-top: 12px; }
+      .cta-card   { padding: 22px 18px; }
+      .email-row  { flex-direction: column; }
+      .btn-notify { width: 100%; padding: 14px; text-align: center; }
+      .pills      { flex-direction: column; align-items: center; }
+      footer      { padding: 20px; flex-direction: column; align-items: center; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- ── HEADER ─────────────────────────────────── -->
+  <header>
+    <!--
+      Place your logo file named "logo.png" in the same folder as this index.html.
+      The logo will display here automatically.
+    -->
+    <img class="logo-img" src="logo.png" alt="The Prime Solution" />
+
+    <div class="header-right">
+      <div class="header-badge">
+        <div class="live-dot"></div>
+        Website Under Construction
+      </div>
+      <span class="header-location">Serving Ohio &amp; Surrounding Areas</span>
+    </div>
+  </header>
+
+  <!-- ── MAIN ──────────────────────────────────── -->
+  <main>
+
+    <!-- Coming Soon Badge -->
+    <div class="badge-block">
+      <!-- deco lines top -->
+      <div class="dash-row">
+        <div class="dash" style="width:90px"></div>
+        <div class="dash" style="width:24px"></div>
+        <div class="dash" style="width:54px"></div>
+      </div>
+
+      <!-- dark angled banner -->
+      <div class="coming-banner">
+        <div class="coming-text">COMING SOON</div>
+      </div>
+
+      <!-- white ribbon -->
+      <div class="under-ribbon">UNDER CONSTRUCTION</div>
+
+      <!-- deco lines bottom -->
+      <div class="dash-row dash-row-bottom">
+        <div class="dash" style="width:54px"></div>
+        <div class="dash" style="width:24px"></div>
+        <div class="dash" style="width:90px"></div>
+      </div>
+    </div>
+
+    <!-- Subheadline -->
+    <p class="subheadline">
+      Ohio's Premier Full Renovation &amp; Maintenance Services.<br>
+      We are building something great for you — and your future home deserves nothing less.
+    </p>
+
+    <!-- Countdown -->
+    <div class="countdown-wrap">
+      <div class="cd-label-top">New Website Launching In</div>
+      <div class="countdown">
+        <div class="cd-unit">
+          <div class="cd-box"><span class="cd-num" id="cd-days">000</span></div>
+          <div class="cd-lbl">Days</div>
+        </div>
+        <div class="cd-sep">:</div>
+        <div class="cd-unit">
+          <div class="cd-box"><span class="cd-num" id="cd-hours">00</span></div>
+          <div class="cd-lbl">Hours</div>
+        </div>
+        <div class="cd-sep">:</div>
+        <div class="cd-unit">
+          <div class="cd-box"><span class="cd-num" id="cd-mins">00</span></div>
+          <div class="cd-lbl">Mins</div>
+        </div>
+        <div class="cd-sep">:</div>
+        <div class="cd-unit">
+          <div class="cd-box"><span class="cd-num" id="cd-secs">00</span></div>
+          <div class="cd-lbl">Secs</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Email CTA -->
+    <div class="cta-wrap">
+      <div class="cta-card">
+        <div class="cta-title">Get Notified When We Launch</div>
+        <p class="cta-sub">No spam — just one email the day we go live.</p>
+        <div class="email-row">
+          <input type="email" id="emailInput" placeholder="Enter your email address..." autocomplete="email" />
+          <button class="btn-notify" id="notifyBtn" onclick="handleNotify()">Notify Me</button>
+        </div>
+        <p class="success-msg" id="successMsg">&#10003; You're on the list! We'll reach out when we launch.</p>
+      </div>
+    </div>
+
+    <!-- Contact pills -->
+    <div class="contact-wrap">
+      <div class="contact-lbl">Need us now? Reach out directly</div>
+      <div class="pills">
+        <a href="tel:+14376691543" class="pill">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.63 19.79 19.79 0 01.01 2.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14v2.92z"/>
+          </svg>
+          (437) 669-1543
+        </a>
+        <a href="mailto:liad@theprimesolution.com" class="pill">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+          liad@theprimesolution.com
+        </a>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ── FOOTER ─────────────────────────────────── -->
+  <footer>
+    <div class="footer-left">
+      <span class="copyright">&#169; 2026 The Prime Solution. All rights reserved.</span>
+      <span class="footer-loc">Ohio&#8217;s Premier Renovation &amp; Maintenance</span>
+    </div>
+    <div class="socials">
+      <a href="#" class="soc-btn" aria-label="Facebook">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+        </svg>
+      </a>
+      <a href="#" class="soc-btn" aria-label="Instagram">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+          <circle cx="12" cy="12" r="4"/>
+          <circle cx="17.5" cy="6.5" r=".5" fill="currentColor" stroke="none"/>
+        </svg>
+      </a>
+      <a href="#" class="soc-btn" aria-label="X / Twitter">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+        </svg>
+      </a>
+      <a href="#" class="soc-btn" aria-label="LinkedIn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/>
+          <circle cx="4" cy="4" r="2"/>
+        </svg>
+      </a>
+      <a href="#" class="soc-btn" aria-label="YouTube">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 001.46 6.42 29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58zM9.75 15.02V8.98L15.5 12z"/>
+        </svg>
+      </a>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  // ── Countdown ─────────────────────────────────────────
+  const LAUNCH = new Date('2027-01-01T00:00:00');
+  const els = {
+    days:  document.getElementById('cd-days'),
+    hours: document.getElementById('cd-hours'),
+    mins:  document.getElementById('cd-mins'),
+    secs:  document.getElementById('cd-secs'),
+  };
+
+  function setNum(el, val) {
+    if (el.textContent !== val) {
+      el.classList.remove('flipping');
+      void el.offsetWidth;
+      el.textContent = val;
+      el.classList.add('flipping');
+    }
+  }
+
+  function tick() {
+    const diff = LAUNCH - Date.now();
+    if (diff <= 0) { Object.values(els).forEach(e => e.textContent = '00'); return; }
+    setNum(els.days,  String(Math.floor(diff / 86400000)).padStart(3, '0'));
+    setNum(els.hours, String(Math.floor((diff % 86400000) / 3600000)).padStart(2, '0'));
+    setNum(els.mins,  String(Math.floor((diff % 3600000)  / 60000)).padStart(2,  '0'));
+    setNum(els.secs,  String(Math.floor((diff % 60000)    / 1000)).padStart(2,   '0'));
+  }
+  tick();
+  setInterval(tick, 1000);
+
+  // ── Email Signup ───────────────────────────────────────
+  function handleNotify() {
+    const input = document.getElementById('emailInput');
+    const msg   = document.getElementById('successMsg');
+    const btn   = document.getElementById('notifyBtn');
+    const val   = input.value.trim();
+
+    if (!val || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
+      input.style.outline = '2.5px solid #ef4444';
+      input.focus();
+      setTimeout(() => input.style.outline = '', 2200);
+      return;
+    }
+
+    msg.style.display = 'block';
+    input.value = '';
+    input.placeholder = "Got it — we'll be in touch!";
+    btn.textContent   = '✓ You\'re In!';
+  }
+
+  document.getElementById('emailInput').addEventListener('keypress', e => {
+    if (e.key === 'Enter') handleNotify();
+  });
+</script>
+</body>
+</html>
