@@ -29,6 +29,21 @@
       overflow-x: hidden;
     }
 
+    /* logo watermark */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url('logo.jpeg');
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: 58%;
+      mix-blend-mode: multiply;
+      opacity: 0.13;
+      pointer-events: none;
+      z-index: 0;
+    }
+
     /* subtle noise texture overlay */
     body::after {
       content: '';
@@ -503,20 +518,8 @@
 <div class="wrapper">
 
   <!-- ── HEADER ─────────────────────────────────── -->
-  <header>
-    <!--
-      Place your logo file named "logo.png" in the same folder as this index.html.
-      The logo will display here automatically.
-    -->
-    <img class="logo-img" src="logo.png" alt="The Prime Solution" />
-
-    <div class="header-right">
-      <div class="header-badge">
-        <div class="live-dot"></div>
-        Website Under Construction
-      </div>
-      <span class="header-location">Serving Ohio &amp; Surrounding Areas</span>
-    </div>
+  <header style="text-align: center; padding: 20px 0;">
+    <img src="logo.jpeg" alt="The Prime Solution Logo" style="max-width: 100%; height: auto; max-height: 150px;">
   </header>
 
   <!-- ── MAIN ──────────────────────────────────── -->
