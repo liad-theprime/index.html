@@ -549,14 +549,37 @@
 
     .c3d-label {
       position: absolute;
-      bottom: 0; left: 0; right: 0;
-      background: linear-gradient(0deg, rgba(0,0,0,.72) 0%, transparent 100%);
+      inset: 0;
+      background: linear-gradient(
+        0deg,
+        rgba(5,40,60,.92) 0%,
+        rgba(5,40,60,.45) 55%,
+        rgba(5,40,60,.08) 100%
+      );
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 0 16px 22px;
+      text-align: center;
+    }
+
+    .c3d-label-bar {
+      width: 32px;
+      height: 3px;
+      background: var(--accent);
+      border-radius: 2px;
+      margin-bottom: 10px;
+    }
+
+    .c3d-label-text {
       color: #fff;
-      padding: 28px 14px 14px;
-      font-size: .78rem;
-      font-weight: 700;
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(.85rem, 1.8vw, 1rem);
+      font-weight: 600;
       letter-spacing: .06em;
       text-transform: uppercase;
+      line-height: 1.3;
     }
 
     .c3d-controls {
@@ -693,38 +716,53 @@
 
     <!-- 3D Project Carousel -->
     <!--
-      Save your 5 project photos in the same folder as index.html:
-      project1.jpeg  – Luxury Master Bathroom (gold fixtures)
-      project2.jpeg  – Modern Shower (black fixtures)
-      project3.jpeg  – Living Room Makeover
-      project4.jpeg  – Bathroom Remodel (small bath)
-      project5.jpeg  – Modern Kitchen
+      Save these 5 images in the same folder as index.html:
+      service1.jpeg  – Home renovation (kitchen before/after)
+      service2.jpeg  – Water damage ceiling
+      service3.jpeg  – Two workers in black jackets on site
+      service4.jpeg  – Floor plan / blueprint
+      service5.jpeg  – Flooded room
     -->
     <div class="portfolio-section">
-      <div class="portfolio-eyebrow">Our Portfolio</div>
-      <div class="portfolio-title">Recent Projects</div>
+      <div class="portfolio-eyebrow">What We Do</div>
+      <div class="portfolio-title">Our Services</div>
 
       <div class="c3d-scene">
         <div class="c3d-ring" id="c3dRing">
           <div class="c3d-card">
-            <img src="project1.jpeg" alt="Luxury Master Bathroom" />
-            <div class="c3d-label">Luxury Master Bathroom</div>
+            <img src="service1.jpeg" alt="Full Home Renovation" />
+            <div class="c3d-label">
+              <div class="c3d-label-bar"></div>
+              <div class="c3d-label-text">Full Home Renovation</div>
+            </div>
           </div>
           <div class="c3d-card">
-            <img src="project2.jpeg" alt="Modern Shower Renovation" />
-            <div class="c3d-label">Modern Shower Renovation</div>
+            <img src="service2.jpeg" alt="Emergency Property Repairs" />
+            <div class="c3d-label">
+              <div class="c3d-label-bar"></div>
+              <div class="c3d-label-text">Emergency Property Repairs</div>
+            </div>
           </div>
           <div class="c3d-card">
-            <img src="project3.jpeg" alt="Living Room Makeover" />
-            <div class="c3d-label">Living Room Makeover</div>
+            <img src="service3.jpeg" alt="Residential Maintenance Services" />
+            <div class="c3d-label">
+              <div class="c3d-label-bar"></div>
+              <div class="c3d-label-text">Residential Maintenance Services</div>
+            </div>
           </div>
           <div class="c3d-card">
-            <img src="project4.jpeg" alt="Bathroom Remodel" />
-            <div class="c3d-label">Bathroom Remodel</div>
+            <img src="service4.jpeg" alt="Insurance Repair Contractor" />
+            <div class="c3d-label">
+              <div class="c3d-label-bar"></div>
+              <div class="c3d-label-text">Insurance Repair Contractor</div>
+            </div>
           </div>
           <div class="c3d-card">
-            <img src="project5.jpeg" alt="Modern Kitchen" />
-            <div class="c3d-label">Modern Kitchen</div>
+            <img src="service5.jpeg" alt="Property Damage Restoration" />
+            <div class="c3d-label">
+              <div class="c3d-label-bar"></div>
+              <div class="c3d-label-text">Property Damage Restoration</div>
+            </div>
           </div>
         </div>
       </div>
