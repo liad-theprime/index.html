@@ -481,6 +481,134 @@
       transform: translateY(-2px);
     }
 
+    /* ── 3D CAROUSEL ────────────────────────────── */
+    .portfolio-section {
+      width: 100%;
+      max-width: 100%;
+      text-align: center;
+      animation: fadeInUp .7s ease .22s both;
+    }
+
+    .portfolio-eyebrow {
+      font-family: 'Oswald', sans-serif;
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.55);
+      margin-bottom: 8px;
+    }
+
+    .portfolio-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(1.4rem, 4vw, 1.9rem);
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: .02em;
+      margin-bottom: 36px;
+    }
+
+    .c3d-scene {
+      perspective: 1100px;
+      height: 360px;
+      position: relative;
+      width: 100%;
+    }
+
+    .c3d-ring {
+      width: 240px;
+      height: 320px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform-style: preserve-3d;
+      transform: translate(-50%, -50%) rotateY(0deg);
+      transition: transform .85s cubic-bezier(.4,0,.2,1);
+    }
+
+    .c3d-card {
+      position: absolute;
+      width: 240px;
+      height: 320px;
+      top: 0; left: 0;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 24px 56px rgba(0,0,0,.45);
+      cursor: pointer;
+    }
+
+    .c3d-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .5s ease;
+    }
+
+    .c3d-card:hover img { transform: scale(1.06); }
+
+    .c3d-label {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: linear-gradient(0deg, rgba(0,0,0,.72) 0%, transparent 100%);
+      color: #fff;
+      padding: 28px 14px 14px;
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .c3d-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      margin-top: 28px;
+    }
+
+    .c3d-btn {
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.12);
+      border: 1.5px solid rgba(255,255,255,.28);
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all .2s ease;
+      backdrop-filter: blur(8px);
+    }
+    .c3d-btn:hover {
+      background: rgba(255,255,255,.24);
+      border-color: rgba(255,255,255,.5);
+      transform: scale(1.1);
+    }
+
+    .c3d-dots { display: flex; gap: 8px; align-items: center; }
+
+    .c3d-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.3);
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: all .25s ease;
+    }
+    .c3d-dot.active {
+      background: white;
+      transform: scale(1.3);
+    }
+
+    @media (max-width: 640px) {
+      .c3d-scene { height: 290px; }
+      .c3d-ring  { width: 190px; height: 255px; }
+      .c3d-card  { width: 190px; height: 255px; }
+    }
+
     /* ── KEYFRAMES ──────────────────────────────── */
     @keyframes zoomIn {
       from { opacity: 0; transform: scale(.88); }
@@ -562,6 +690,51 @@
       Ohio's Premier Full Renovation &amp; Maintenance Services.<br>
       We are building something great for you — and your future home deserves nothing less.
     </p>
+
+    <!-- 3D Project Carousel -->
+    <!--
+      Save your 5 project photos in the same folder as index.html:
+      project1.jpeg  – Luxury Master Bathroom (gold fixtures)
+      project2.jpeg  – Modern Shower (black fixtures)
+      project3.jpeg  – Living Room Makeover
+      project4.jpeg  – Bathroom Remodel (small bath)
+      project5.jpeg  – Modern Kitchen
+    -->
+    <div class="portfolio-section">
+      <div class="portfolio-eyebrow">Our Portfolio</div>
+      <div class="portfolio-title">Recent Projects</div>
+
+      <div class="c3d-scene">
+        <div class="c3d-ring" id="c3dRing">
+          <div class="c3d-card">
+            <img src="project1.jpeg" alt="Luxury Master Bathroom" />
+            <div class="c3d-label">Luxury Master Bathroom</div>
+          </div>
+          <div class="c3d-card">
+            <img src="project2.jpeg" alt="Modern Shower Renovation" />
+            <div class="c3d-label">Modern Shower Renovation</div>
+          </div>
+          <div class="c3d-card">
+            <img src="project3.jpeg" alt="Living Room Makeover" />
+            <div class="c3d-label">Living Room Makeover</div>
+          </div>
+          <div class="c3d-card">
+            <img src="project4.jpeg" alt="Bathroom Remodel" />
+            <div class="c3d-label">Bathroom Remodel</div>
+          </div>
+          <div class="c3d-card">
+            <img src="project5.jpeg" alt="Modern Kitchen" />
+            <div class="c3d-label">Modern Kitchen</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="c3d-controls">
+        <button class="c3d-btn" id="c3dPrev" aria-label="Previous">&#8592;</button>
+        <div class="c3d-dots" id="c3dDots"></div>
+        <button class="c3d-btn" id="c3dNext" aria-label="Next">&#8594;</button>
+      </div>
+    </div>
 
     <!-- Countdown -->
     <div class="countdown-wrap">
@@ -717,6 +890,79 @@
   document.getElementById('emailInput').addEventListener('keypress', e => {
     if (e.key === 'Enter') handleNotify();
   });
+
+  // ── 3D Carousel ───────────────────────────────────────
+  (function () {
+    const ring   = document.getElementById('c3dRing');
+    const dotsEl = document.getElementById('c3dDots');
+    if (!ring) return;
+
+    const cards  = Array.from(ring.querySelectorAll('.c3d-card'));
+    const N      = cards.length;
+    const ANGLE  = 360 / N;
+    // radius: enough space so cards don't overlap
+    const RADIUS = Math.round((240 / 2) / Math.tan(Math.PI / N)) + 80;
+    let   current = 0;
+    let   autoTimer;
+
+    // Place every card around the cylinder
+    cards.forEach((card, i) => {
+      card.style.transform = `rotateY(${ANGLE * i}deg) translateZ(${RADIUS}px)`;
+    });
+
+    // Build dot indicators
+    cards.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.className = 'c3d-dot' + (i === 0 ? ' active' : '');
+      dot.setAttribute('aria-label', 'Slide ' + (i + 1));
+      dot.addEventListener('click', () => goTo(i));
+      dotsEl.appendChild(dot);
+    });
+
+    function syncDots() {
+      const active = ((current % N) + N) % N;
+      dotsEl.querySelectorAll('.c3d-dot').forEach((d, i) =>
+        d.classList.toggle('active', i === active)
+      );
+    }
+
+    function rotateTo(index) {
+      ring.style.transform =
+        `translate(-50%, -50%) rotateY(${-ANGLE * index}deg)`;
+      syncDots();
+    }
+
+    function goTo(index) {
+      current = index;
+      rotateTo(current);
+      resetAuto();
+    }
+
+    function step(dir) {
+      current += dir;
+      rotateTo(current);
+      resetAuto();
+    }
+
+    function resetAuto() {
+      clearInterval(autoTimer);
+      autoTimer = setInterval(() => step(1), 3800);
+    }
+
+    document.getElementById('c3dPrev').addEventListener('click', () => step(-1));
+    document.getElementById('c3dNext').addEventListener('click', () => step(1));
+
+    // Swipe support for mobile
+    let touchStartX = 0;
+    ring.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+    ring.addEventListener('touchend',   e => {
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(dx) > 40) step(dx < 0 ? 1 : -1);
+    });
+
+    rotateTo(0);
+    resetAuto();
+  })();
 </script>
 </body>
 </html>
